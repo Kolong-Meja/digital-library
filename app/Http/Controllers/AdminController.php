@@ -17,9 +17,12 @@ class AdminController extends Controller
             ->select('*')
             ->get();
         
+        $publishedDate = "";
+        
         foreach ($booksData as $bookData) {
             $publishedDate = DateTime::createFromFormat('Y-m-d H:i:s', $bookData->published);
         }
+
         return view('admin.dashboard', compact('booksData', 'publishedDate'));
     }
 }

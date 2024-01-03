@@ -40,7 +40,7 @@
                         </div>  
                     </div> 
                 @endif
-
+                
                 <h1 class="text-gray-100 text-3xl font-semibold text-center mb-6">List of Books</h1>
                 <div class="grid grid-cols-1 px-5 md:grid-cols-3 md:px-0 gap-4">
                     @forelse ($booksData as $bookData)

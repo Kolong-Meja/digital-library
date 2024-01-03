@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title', 255)->nullable(false);
             $table->text('abilities')->nullable(false);
             $table->enum('status', ['deprecated', 'active'])
-            ->default('not active')
+            ->default('deprecated')
             ->nullable(false);
             $table->index(['title']);
             $table->timestamps();

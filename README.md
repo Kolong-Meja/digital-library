@@ -50,9 +50,9 @@ npm install
 3. Periksa file .env dan lakukan konfigurasi. Pastikan data-data dibawah ini terisi dengan benar:
 
 **(diutamakan)**
-- DB_CONNECTION=pgsql
+- DB_CONNECTION=mysql
 - DB_HOST=127.0.0.1
-- DB_PORT=5432
+- DB_PORT=3306
 - DB_DATABASE=(nama database)
 - DB_USERNAME=(username dari database)
 - DB_PASSWORD=(password user)
@@ -61,6 +61,14 @@ npm install
 - APP_NAME="Your website name"
 - APP_ENV=local
 - APP_URL=http://localhost
+
+**(optional)**
+- DB_CONNECTION=pgsql
+- DB_HOST=127.0.0.1
+- DB_PORT=5432
+- DB_DATABASE=(nama database)
+- DB_USERNAME=(username dari database)
+- DB_PASSWORD=(password user)
 
 4. Pastikan untuk melakukan migrasi tabel dari laravel migration files ke database:
 
@@ -80,7 +88,17 @@ php artisan db:seed
 
 6. Aktifkan koneksi dengan database:
 
-Karena projek ini memakai postgresql sebagai database utamanya, maka perlu menjalankan perintah (terminal):
+### Phpmyadmin
+Untuk pengguna phpmyadmin dapat melakukan aktivasi sesuai perangkat yang dipakai.
+
+Lalu, buatlah user baru di phpmyadmin, seperti berikut:
+
+- username: digital_library
+- password: (dapat mengikuti file .env atau buat baru)
+- host: 127.0.0.1
+
+### Postgresql
+Jika memakai postgresql sebagai database utamanya, maka perlu menjalankan perintah (terminal):
 
 ```bash
 psql -h 127.0.0.1 -d nama_database -U nama_username -p 5432
