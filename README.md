@@ -1,66 +1,156 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Digital Library Website
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Adalah sebuah situs perpusatkaan online yang saya kembangkan untuk memenuhi pre test dari perusahaan detik.com
 
-## About Laravel
+Situs ini saya kembangkan dengan framework Laravel 10 dengan library tambahan seperti Tailwind CSS, Flowbite CSS, Vite, Laravel Breeze, dsb.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Fitur-fitur yang tersedia
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Situs ini memiliki fitur sebagai berikut:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. **Login dan Register (Authentication Feature)** -> Sebuah fitur yang berguna untuk autentikasi data user dan sebagai jembatan antara "guest" (Non Authenticate User) dengan "admin & member" (Authenticate User).
 
-## Learning Laravel
+2. **Search and Filter** -> Sebuah fitur yang berguna untuk analisa data dan sebagai tempat untuk me-manage data. Fitur ini tersedia hanya bagi "Authenticate User" saja.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. **Export PDF** -> Sebuah fitur yang berguna untuk mengekspor data buku menjadi sebuah file PDF. Fitur ini tersedia hanya bagi "Authenticate User" saja.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Pembatasan Hak Akses
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Pada beberapa route, terdapat Middleware (Peranti tengah) yang mengecek apakah role user yang telah terautentikasi adalah role tertentu atau tidak. 
 
-## Laravel Sponsors
+## Role yang dimiliki
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Pada situs ini saya membagi role menjadi dua bagian, yaitu admin dan member.
 
-### Premium Partners
+1. admin -> adalah role yang memiliki kemampuan create, view, edit, dan delete.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+2. member -> adalah role yang memiliki kemampuan create, view, edit, dan delete.
 
-## Contributing
+namun, member tidak dapat mengakses beberapa route. role member disini lebih difokuskan pada pembuatan dan manage data buku serta kategori. Yang artinya role admin memiliki kendali penuh atas situs ini.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+## Penggunaan
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Sebelum menjalankan website secara lokal, terdapat kebutuhan yang perlu dilakukan, yaitu:
 
-## Security Vulnerabilities
+1. Lakukan perintah **composer install** pada terminal
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+composer install
+```
 
-## License
+2. Lakukan perintah **npm install** pada terminal
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+npm install
+```
+
+3. Periksa file .env dan lakukan konfigurasi. Pastikan data-data dibawah ini terisi dengan benar:
+
+**(diutamakan)**
+- DB_CONNECTION=pgsql
+- DB_HOST=127.0.0.1
+- DB_PORT=5432
+- DB_DATABASE=(nama database)
+- DB_USERNAME=(username dari database)
+- DB_PASSWORD=(password user)
+
+**(optional)**
+- APP_NAME="Your website name"
+- APP_ENV=local
+- APP_URL=http://localhost
+
+4. Pastikan untuk melakukan migrasi tabel dari laravel migration files ke database:
+
+```bash
+php artisan migrate
+```
+
+**NOTE**: Bila terdapat error, cek pada file **/storage/logs/laravel.log**
+
+5. Lakukan seeding data dari file seeder:
+
+```bash
+php artisan db:seed
+```
+
+**NOTE**: Fungsi seed disini adalah untuk mempermudah agar kita dapat login tanpa harus melakukan register user baru. Untuk melihat data user yang telah di seed, silahkan cek file **/database/seeders/UserSeeder.php**
+
+6. Aktifkan koneksi dengan database:
+
+Karena projek ini memakai postgresql sebagai database utamanya, maka perlu menjalankan perintah (terminal):
+
+```bash
+psql -h 127.0.0.1 -d nama_database -U nama_username -p 5432
+```
+
+Lalu anda perlu memasukkan password yang sudah dibuatkan di file .env.example:
+
+```bash
+Password for user nama_username: 
+```
+
+### Pembuatan user baru di postgresql
+**NOTE**: Untuk membuat user pada postgresql cukup mudah, berikut langkahnya:
+
+- Lakukan perintah di terminal seperti berikut:
+
+```bash
+sudo -u postgres psql
+```
+
+lalu, lakukan perintah berikut:
+
+```bash
+CREATE USER [nama_username] WITH PASSWORD '[password]';
+```
+
+**NOTE**: Untuk username dan password bisa dilihat di file .env.example
+
+### Penambahan privileges pada user yang telah dibuat
+
+Setelah user baru selesai dibuat maka, lakukan perintah berikut:
+
+```bash
+sudo -u postgres psql
+```
+
+Lalu, lakukan perintah berikut:
+
+```bash
+ALTER USER [nama_username] WITH CREATEROLE CREATEDB;
+```
+
+**NOTE**: CREATEROLE dan CREATEDB adalah privileges yang berguna untuk memberikan hak penuh kepada user untuk dapat membuat ROLE baru dan DATABASE baru.
+
+7. Lakukan pengetesan dengan menjalankan perintah berikut:
+
+```bash
+php artisan serve
+```
+
+serta,
+
+```bash
+npm run dev
+```
+
+**NOTE**: perintah **npm run dev** berguna untuk menjalankan library **Vite** karena projek ini menggunakan library seperti Tailwind CSS dan Flowbite CSS. Dengan perintah ini juga, perubahan tampilan dari sisi Front End menjadi lebih mudah.
+
+8. Silahkan menjelajahi situs tersebut, pastikan untuk tetap logout setelah selesai menggunakan situs tersebut.
+
+## Credits
+
+My big thanks to all the open source libraries and framework I use:
+
+- Laravel Framework:
+https://laravel.com/
+
+- Tailwind CSS library
+https://tailwindcss.com/
+
+- Flowbite Library
+https://flowbite.com/
+
+- DOMPdf Package
+https://github.com/barryvdh/laravel-dompdf
