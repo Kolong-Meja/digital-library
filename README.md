@@ -14,6 +14,8 @@ Situs ini memiliki fitur sebagai berikut:
 
 3. **Export PDF** -> Sebuah fitur yang berguna untuk mengekspor data buku menjadi sebuah file PDF. Fitur ini tersedia hanya bagi "Authenticate User" saja.
 
+4. **Action Master** -> Sebuah fitur basic CRUD (create, read, update, delete).
+
 ## Pembatasan Hak Akses
 
 Pada beberapa route, terdapat Middleware (Peranti tengah) yang mengecek apakah role user yang telah terautentikasi adalah role tertentu atau tidak. 
